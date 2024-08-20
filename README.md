@@ -1,24 +1,53 @@
 # devise-jwt-sample-on-rails-5 README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Minimum use of devie-jwt gem in rails 5 to confirm how it works.  
+See commit messages to know how to make the same app by rails commands.
 
-Things you may want to cover:
+# Receive JWT
+Clone the repository, run migrations and start rails
+```
+rails db:create
+rails db:migrate
+bundle config set --local path 'vendor/bundle'
+bundle install
+rails s
+```
 
-* Ruby version
+Create a user and recieve JWT
 
-* System dependencies
+```
+curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d "{ \"user\": { \"email\": \"test@test.com\", \"password\": \"password\" }}" -v
+```
 
-* Configuration
+```
+...
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NGU4.....3cktz33QYfgKtjw
+...
+```
 
-* Database creation
+## Interface
+```
+$ rails routes
+                   Prefix Verb   URI Pattern                                                                              Controller#Action
+         new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
+             user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
+     destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
+        new_user_password GET    /users/password/new(.:format)                                                            devise/passwords#new
+       edit_user_password GET    /users/password/edit(.:format)                                                           devise/passwords#edit
+            user_password PATCH  /users/password(.:format)                                                                devise/passwords#update
+                          PUT    /users/password(.:format)                                                                devise/passwords#update
+                          POST   /users/password(.:format)                                                                devise/passwords#create
+ cancel_user_registration GET    /users/cancel(.:format)                                                                  devise/registrations#cancel
+    new_user_registration GET    /users/sign_up(.:format)                                                                 devise/registrations#new
+   edit_user_registration GET    /users/edit(.:format)                                                                    devise/registrations#edit
+        user_registration PATCH  /users(.:format)                                                                         devise/registrations#update
+                          PUT    /users(.:format)                                                                         devise/registrations#update
+                          DELETE /users(.:format)                                                                         devise/registrations#destroy
+                          POST   /users(.:format)                                                                         devise/registrations#create
+       rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
