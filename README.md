@@ -3,7 +3,7 @@
 Minimum use of [devie-jwt](https://github.com/waiting-for-dev/devise-jwt) gem in rails 5 to confirm how it works.  
 See commit messages to know how to make the same app by rails commands.
 
-# Receive JWT
+# Receive and use JWT
 Clone the repository, run migrations and start rails
 ```
 rails db:create
@@ -46,7 +46,26 @@ curl -X DELETE http://localhost:3000/users/sign_out -H "Content-Type: applicatio
 User Update (3.7ms)  UPDATE `users` SET `jti` = 'd53871ff-01ac-464f-9cda-6527b1f9378a' WHERE `users`.`id` = 5
 ```
 
-## Interface
+# Decode JWT
+```
+rails c
+JWT.decode("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkNTM4NzFmZi0......vyN-3y7tzymqDRQU3aG0",Rails.application.credentials.fetch(:secret_key_base))
+```
+
+Decode Succeeded
+```
+=> [{"jti"=>"d53871ff-01ac-464f-9cda-6527b1f9378a", "sub"=>"5", "scp"=>"user", "aud"=>nil, "iat"=>1724143626, "exp"=>1724145426}, {"alg"=>"HS256"}]
+```
+
+Failed
+```
+JWT::VerificationError (Signature verification failed)
+```
+```
+JWT::ExpiredSignature (Signature has expired)
+```
+
+# Interface
 ```
 $ rails routes
                    Prefix Verb   URI Pattern                                                                              Controller#Action
