@@ -1,6 +1,6 @@
 # devise-jwt-sample-on-rails-5 README
 
-Minimum use of devie-jwt gem in rails 5 to confirm how it works.  
+Minimum use of [devie-jwt](https://github.com/waiting-for-dev/devise-jwt) gem in rails 5 to confirm how it works.  
 See commit messages to know how to make the same app by rails commands.
 
 # Receive JWT
