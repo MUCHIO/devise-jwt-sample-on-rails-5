@@ -25,6 +25,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NGU4.....3cktz33QYfgKtjw
 ...
 ```
 
+Sign-in by the user and recieve JWT
+```
+curl -X POST http://localhost:3000/users/sign_in -H "Content-Type: application/json" -d "{ \"user\": { \"email\": \"test06@test.com\", \"password\": \"password\" }}" -v
+```
+
+```
+...
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzMzQ2.....ly4veYpWdezY-sSkI-ROTw_E
+...
+```
+
 ## Interface
 ```
 $ rails routes
