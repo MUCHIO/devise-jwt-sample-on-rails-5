@@ -36,14 +36,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzMzQ2.....ly4veYpWdezY-sSk
 ...
 ```
 
-sign out using JWT
+Sign out using JWT
 ```
 curl -X DELETE http://localhost:3000/users/sign_out -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzMzQ2.....ly4veYpWdezY-sSkI-ROTw_E" -v
 ```
 
-users.jti is updated and JWT is revoked
+`users.jti` is updated to revoke the JWT
 ```
- User Update (3.7ms)  UPDATE `users` SET `jti` = 'd53871ff-01ac-464f-9cda-6527b1f9378a' WHERE `users`.`id` = 5
+User Update (3.7ms)  UPDATE `users` SET `jti` = 'd53871ff-01ac-464f-9cda-6527b1f9378a' WHERE `users`.`id` = 5
 ```
 
 ## Interface
